@@ -1,0 +1,54 @@
+<mat-card>
+    <div fxFlex fxLayout>
+        <div fxFlex="25%" fxLayout="column" fxLayoutAlign="center">
+            <img src="./../../../assets/donation.jpg" alt="donation" style="width: 300px;">
+        </div>
+        <div fxFlex=10%>
+            <mat-divider [vertical]=true style="height:100%; border-width: 2px; border-color: grey;"></mat-divider>
+        </div>
+        <div fxFlex="600px" fxLayout="column" style="margin-top: 20px; margin-left: 20px;">
+            <p class="mat-title">DONATION AMOUNT</p>
+            <form [formGroup]="paymentForm">
+                <div>
+                    <label id="amountLabel">Choose your amount</label>
+                    <mat-radio-group aria-labelledby="amountLabel" formControlName="amount" [(ngModel)]="amount">
+                        <div fxLayout fxLayoutGap="100px" style="margin-top: 15px;">
+                            <mat-radio-button [value]="amount" *ngFor="let amount of definedAmount">₹ {{amount}}
+                            </mat-radio-button>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <mat-radio-button>
+                                <mat-form-field>
+                                    <input type="text" matInput placeholder="Enter other amount" (input)="onInput($event.target.value)">
+                                </mat-form-field>
+                            </mat-radio-button>
+                        </div>
+                    </mat-radio-group>
+                </div>
+                <div>
+                    <p>Payment Amount: {{amount}}</p>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput formControlName="name">
+                    </mat-form-field>
+                </div>
+                <div fxLayoutGap="20px">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input type="text" matInput formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Phone Number</mat-label>
+                        <input type="text" matInput formControlName="phone">
+                    </mat-form-field>
+                </div>
+                <button type="button" mat-raised-button (click)="createRazorPayOrder()">
+                    <img src="./../../../assets/button.png" alt="razorPayButton" style="height:20px">
+                    <span> Donate</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</mat-card>
