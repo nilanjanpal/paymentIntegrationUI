@@ -1,0 +1,54 @@
+<div fxFlex="600px" fxLayout="column" style="margin-top: 20px; margin-left: 20px;">
+    <form [formGroup]="paymentForm">
+        <div>
+            <label id="amountLabel">Choose your amount</label>
+            <mat-radio-group aria-labelledby="amountLabel" formControlName="amount" [(ngModel)]="amount">
+                <div fxLayout fxLayoutGap="100px" style="margin-top: 15px;">
+                    <mat-radio-button [value]="amount" *ngFor="let amount of definedAmount">₹ {{amount}}
+                    </mat-radio-button>
+                </div>
+                <div style="margin-top: 15px;">
+                    <mat-radio-button>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="Enter other amount" (input)="onInput($event.target.value)">
+                        </mat-form-field>
+                    </mat-radio-button>
+                </div>
+            </mat-radio-group>
+        </div>
+        <div>
+            <p>Payment Amount: {{amount}}</p>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Your name</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field style="margin-left: 10px;">
+                <mat-label>Your email</mat-label>
+                <input type="email" matInput formControlName="email">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Currency</mat-label>
+                <mat-select name="currency" formControlName="currency">
+                  <mat-option *ngFor="let currency of currencyAvailable" [value]="currency">
+                    {{currency}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Quantity</mat-label>
+                <mat-select name="quantity" formControlName="quantity">
+                  <mat-option *ngFor="let quantity of quantityAvailable" [value]="quantity">
+                    {{quantity}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <button type="button" color="primary" mat-raised-button (click)="createPayment()">Donate</button>
+    </form>
+</div>

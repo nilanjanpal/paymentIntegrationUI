@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://localhost:3000/',
-  apiUrl: 'https://paymentintegrtn.herokuapp.com/'
+  apiUrl: 'http://localhost:3000/',
+  stripeKey: 'pk_test_51IRBIKI5IyHb9l59JE4GskFMi3xMgLJYOkpIvBTT2PND5Ot5sMNqwmBEQf7FYwXgCd4ACoONNTKX175gYO30qqlw00ZqmWbNRy'  
 };
 
 /*

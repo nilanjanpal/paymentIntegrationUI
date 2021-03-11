@@ -6,11 +6,11 @@ import { WindowRefService } from 'src/app/service/window-ref.service';
 declare var RazorPay: any;
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  selector: 'app-razorpay-payment',
+  templateUrl: './razorpay-payment.component.html',
+  styleUrls: ['./razorpay-payment.component.css']
 })
-export class PaymentComponent implements OnInit {
+export class RazorpayPaymentComponent implements OnInit {
 
   razorPayOptions = {
     'key': '',
