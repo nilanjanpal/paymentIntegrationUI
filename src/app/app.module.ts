@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StripePaymentComponent } from './payment/stripe-payment/stripe-payment.component';
 import { PaymentComponent } from './payment/payment.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RazorpayPaymentComponent,
     StripePaymentComponent,
-    PaymentComponent
+    PaymentComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

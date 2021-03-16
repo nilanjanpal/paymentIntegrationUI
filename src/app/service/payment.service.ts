@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { from, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
+  paymentGateways = ['Stripe', 'Razorpay'];
   constructor(private http: HttpClient) { }
+
+  getPaymentGateways(): Observable<string[]> {
+    return of([...this.paymentGateways]);
+  }
 
   createOrder(amount: number, currency: string, receipt: string, payment_capture: boolean, notes: {}) {
     return new Promise<{ id: string, apiKey: string }>(

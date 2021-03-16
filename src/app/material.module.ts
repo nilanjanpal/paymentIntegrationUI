@@ -9,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatRadioModule,
         MatTabsModule,
         MatIconModule,
-        MatSelectModule
+        MatSelectModule,
+        MatStepperModule
     ],
     exports: [
         MatToolbarModule,
@@ -33,7 +35,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatRadioModule,
         MatTabsModule,
         MatIconModule,
-        MatSelectModule
+        MatSelectModule,
+        MatStepperModule
     ]
 })
 export class MaterialModule{}

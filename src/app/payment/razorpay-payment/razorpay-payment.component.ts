@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { take } from 'rxjs/operators';
+import { User } from 'src/app/model/user.model';
 import { PaymentService } from 'src/app/service/payment.service';
+import { UserService } from 'src/app/service/user.service';
 import { WindowRefService } from 'src/app/service/window-ref.service';
-
-declare var RazorPay: any;
 
 @Component({
   selector: 'app-razorpay-payment',
@@ -35,9 +36,11 @@ export class RazorpayPaymentComponent implements OnInit {
   paymentCapture = false;
   notes = {};
   definedAmount = [500 , 1000, 1500, 2000];
+  user: User;
 
   constructor(private winRef: WindowRefService,
-    private paymentService: PaymentService) { }
+              private paymentService: PaymentService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -45,19 +48,22 @@ export class RazorpayPaymentComponent implements OnInit {
 
   createForm() {
     this.paymentForm = new FormGroup({
-      name: new FormControl('', Validators.required),
       amount: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', Validators.required)
     });
   }
 
   createRazorPayOrder() {
-    console.log(this.paymentForm.value.amount);
     this.paymentService.createOrder(this.amount*100, this.currency, this.receipt, this.paymentCapture, this.notes)
     .then(
       (response) => {
-        this.payWithRazor(response.id, response.apiKey);
+        this.userService.getUser()
+        .pipe(take(1))
+        .subscribe(
+          (user) => {
+            this.user = {...user};
+            this.payWithRazor(response.id, response.apiKey);
+          }
+        )
       }
     );
   }
@@ -82,9 +88,9 @@ export class RazorpayPaymentComponent implements OnInit {
         color: '#0c238a'
       },
       prefill: {
-        name: this.paymentForm.value.name,
-        email: this.paymentForm.value.email,
-        contact: this.paymentForm.value.phone
+        name: this.user.name,
+        email: this.user.email,
+        contact: this.user.phone
       }
     };
     options.handler = ((response, error) => {
@@ -104,8 +110,5 @@ export class RazorpayPaymentComponent implements OnInit {
   onInput(value) {
     this.amount = value;
   }
-
-  onRadioChange(value) {
-    console.log(value);
-  }
+  
 }

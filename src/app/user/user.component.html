@@ -1,0 +1,48 @@
+<form fxFlex fxLayout="column" [formGroup]="userForm">
+    <div fxLayoutGap="20px">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="text" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input type="text" matInput formControlName="phone">
+        </mat-form-field>
+    </div>
+    <div style="margin-bottom: 10px;">
+        <button type="button" mat-flat-button color="accent" (click)="populateAddress()">
+            <span>Use Current Location</span>
+            <mat-icon style="margin-left: 5px;">location_searching</mat-icon>
+        </button>
+    </div>
+    <div fxLayoutGap="20px" style="margin-bottom: 10px;">
+        <mat-form-field>
+            <mat-label>Street Name</mat-label>
+            <input type="text" matInput formControlName="street">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>City</mat-label>
+            <input type="text" matInput formControlName="city">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>State</mat-label>
+            <input type="text" matInput formControlName="state">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Zip</mat-label>
+            <input type="text" matInput formControlName="zip">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Select Payment Gateway</mat-label>
+            <mat-select formControlName="paymentGateway">
+                <mat-option *ngFor="let payment of (this.paymentService.getPaymentGateways() | async)" [value]="payment">{{payment}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</form>

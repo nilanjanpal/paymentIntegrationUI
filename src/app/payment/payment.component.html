@@ -3,16 +3,22 @@
         <div fxFlex="25%" fxLayout="column" fxLayoutAlign="center">
             <img src="./../../../assets/donation.jpg" alt="donation" style="width: 300px;">
         </div>
-        <div fxFlex=10%>
+        <div style="margin:10px">
             <mat-divider [vertical]=true style="height:100%; border-width: 2px; border-color: grey;"></mat-divider>
         </div>
-        <mat-tab-group>
-            <mat-tab label="Razorpay">
-                <app-razorpay-payment></app-razorpay-payment>
-            </mat-tab>
-            <mat-tab label="Stripe">
-                <app-stripe-payment></app-stripe-payment>
-            </mat-tab>
-        </mat-tab-group>
+        <mat-horizontal-stepper [linear]="true" #stepper>
+            <mat-step>
+                <div>
+                    <app-user></app-user>
+                    <button color="primary" mat-flat-button matStepperNext (click)="createUser()">Next</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <div>
+                    <app-razorpay-payment *ngIf="userService.isRazorpaySelected() | async"></app-razorpay-payment>
+                    <app-stripe-payment *ngIf="userService.isStripeSelected() | async"></app-stripe-payment>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
     </div>
 </mat-card>

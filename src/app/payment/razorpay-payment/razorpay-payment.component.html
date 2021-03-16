@@ -20,22 +20,6 @@
         <div>
             <p>Payment Amount: {{amount}}</p>
         </div>
-        <div>
-            <mat-form-field>
-                <mat-label>Name</mat-label>
-                <input type="text" matInput formControlName="name">
-            </mat-form-field>
-        </div>
-        <div fxLayoutGap="20px">
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input type="text" matInput formControlName="email">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Phone Number</mat-label>
-                <input type="text" matInput formControlName="phone">
-            </mat-form-field>
-        </div>
         <button color="primary" type="button" mat-raised-button (click)="createRazorPayOrder()">
             <img src="./../../../assets/button.png" alt="razorPayButton" style="height:20px">
             <span> Donate</span>
